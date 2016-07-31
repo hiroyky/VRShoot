@@ -7,4 +7,5 @@ public interface IBluetoothComn {
     void Close();
     void Write(string data);
     string Read();
+    int ReadAvailable();
 }

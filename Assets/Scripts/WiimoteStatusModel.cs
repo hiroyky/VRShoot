@@ -27,5 +27,5 @@ public struct WiimoteStatus {
     public Button Down;
     public Button Right;
     public Button Left;
-    public WiimoteOrientation Orientetion;
+    public WiimoteOrientation Orientation;
 }

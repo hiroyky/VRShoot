@@ -105,9 +105,13 @@
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazePointer.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
     <Compile Include="Assets\Scripts\AndroidBluetoothComn.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyCreator.cs" />
     <Compile Include="Assets\Scripts\IBluetoothComn.cs" />
+    <Compile Include="Assets\Scripts\IInput.cs" />
     <Compile Include="Assets\Scripts\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Sample.cs" />
+    <Compile Include="Assets\Scripts\MouseInput.cs" />
     <Compile Include="Assets\Scripts\WiimoteInput.cs" />
     <Compile Include="Assets\Scripts\WiimoteStatusModel.cs" />
   </ItemGroup>

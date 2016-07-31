@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Threading;
 using System.Runtime.Serialization;
 using System;
 
-public class WiimoteInput {
-    private Thread thread;
-    private AndroidBluetoothComn comn;
+public class WiimoteInput : IInput {
+    private IBluetoothComn comn;
+    private WiimoteStatus status;
 
-    public WiimoteInput(AndroidBluetoothComn _comn) {
-        this.comn = AndroidBluetoothComn.Instance;
+    public WiimoteInput(IBluetoothComn _comn) {
+        this.comn = _comn;
     }
 
-    public WiimoteStatus WiimoteStatus { get; private set; }
+    ~WiimoteInput() {
+        comn.Close();
+    }
 
-    public void Run(string address) {
+    public void Connect(string address) {
         Debug.Log("Listen: Opening..");
         try {
             comn.Open(address);
@@ -24,20 +25,19 @@ public class WiimoteInput {
         Debug.Log("Listen: Opened!");
     }
 
-    public void process() {
-        if (comn.ReadAvailable() <= 0) {
-            return;
+    public WiimoteStatus WiimoteStatus {
+        get {
+            if (comn.ReadAvailable() > 0) {
+                string data = comn.Read();
+                status = JsonUtility.FromJson<WiimoteStatus>(data);
+            }
+            return status;
         }
-        Debug.Log("Listen: READING");
-        string data = "";
-        try {
-            data = comn.Read();
-        } catch (Exception e) {
-            Debug.Log("Listen: exception " + e.Message);
+    }
+
+    public bool IsTrigger {
+        get {
+            return WiimoteStatus.B == Button.JustPressed;
         }
-        Debug.Log("Listen: READ");
-        Debug.Log("Listen: " + data.Replace("\n", ""));
-        this.WiimoteStatus = JsonUtility.FromJson<WiimoteStatus>(data);
-        Debug.Log("Listen: B" + this.WiimoteStatus.B);
     }
 }

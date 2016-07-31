@@ -21,6 +21,10 @@ public class AndroidBluetoothComn : IBluetoothComn {
         plugin = new AndroidJavaClass(JAVA_CLASS_NAME).CallStatic<AndroidJavaObject>("getInstance");
     }
 
+    ~AndroidBluetoothComn() {
+        Close();
+    }
+
     public Dictionary<string, string> GetBoundedDevices() {
         AndroidJavaObject deviceJavaList = plugin.Call<AndroidJavaObject>("getBoundedDevices");
         int size = deviceJavaList.Call<int>("size");
