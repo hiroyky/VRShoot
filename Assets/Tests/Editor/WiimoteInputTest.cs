@@ -18,6 +18,10 @@ public class WiimoteInputTest {
             throw new NotImplementedException();
         }
 
+        public string GetData() {
+            throw new NotImplementedException();
+        }
+
         public void Open(string deviceAddress) {
         }
 
@@ -27,6 +31,14 @@ public class WiimoteInputTest {
 
         public int ReadAvailable() {
             return ReadAvailableValue;
+        }
+
+        public void Start() {
+            throw new NotImplementedException();
+        }
+
+        public void Stop() {
+            throw new NotImplementedException();
         }
 
         public void Write(string data) {

@@ -20,19 +20,22 @@ public class Bullet : MonoBehaviour {
     }
 
     bool isOutOfArea() {
-        if (transform.position.x < -25 || transform.position.x > 25) {
+        if (transform.position.x < -35 || transform.position.x > 45) {
             return true;
         }
-        if (transform.position.y < -25 || transform.position.y > 25) {
+        if (transform.position.y < -35 || transform.position.y > 45) {
             return true;
         }
-        if (transform.position.z < -25 || transform.position.z > 25) {
+        if (transform.position.z < -35 || transform.position.z > 45) {
             return true;
         }
         return false;
     }
 
     void OnCollisionEnter(Collision other) {
-        Destroy(gameObject);
+        if (!other.gameObject.CompareTag("Player")) {
+            Debug.Log("collision " + other.gameObject.name);
+            Destroy(gameObject);
+        }        
     }
 }
