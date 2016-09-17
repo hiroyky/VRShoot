@@ -10,7 +10,7 @@ public class GameRunner : MonoBehaviour {
     Hashtable playerPath = new Hashtable();
     
 	void Start () {
-        //iTween.MoveTo(Player, iTween.Hash("path", iTweenPath.GetPath(PathName), "time", Time));
+        iTween.MoveTo(Player, iTween.Hash("path", iTweenPath.GetPath(PathName), "time", Time));
 	}
 	
 	void Update () {
